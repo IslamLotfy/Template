@@ -2,6 +2,7 @@ package com.islam.template.downloader
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import io.reactivex.Observable
 import io.reactivex.Single
 import java.io.File
 import java.io.FileOutputStream
@@ -32,4 +33,11 @@ class FileDownloader constructor(private val cacheDirectory: String) {
         }
     }
 
+    fun downloadFiles(listFilesUrl: List<String>): Single<List<Bitmap>> {
+        return Observable.fromIterable(listFilesUrl)
+            .concatMapEager {
+                downloadFile(it, it.hashCode().toString()).toObservable()
+            }.toList()
+
+    }
 }

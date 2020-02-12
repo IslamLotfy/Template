@@ -96,4 +96,7 @@ dependencies {
     implementation 'com.facebook.conceal:conceal:2.0.1@aar'
 
 
+    implementation 'me.dm7.barcodescanner:zxing:1.9.13'
+
+
 }
